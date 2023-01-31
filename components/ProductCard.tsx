@@ -1,7 +1,8 @@
 'use client'
-import { Container, Grid, Stack, createStyles } from '@mantine/core';
+import { Container, Grid, Stack, Text, createStyles } from '@mantine/core';
 import Link from 'next/link'
 import Image from 'next/image'
+import styles from './ProductCard.module.css'
 
 
 
@@ -11,42 +12,47 @@ export default function ProductCard({ products }: any) {
 
     console.log("Product", products);
     return (
-        <Container my="md">
-            <Grid gutter={0}>
-                <Grid.Col xs={8}>
-                    <div className={classes.productCard}>
-                        <Image
-                            src="/black_hat_1.png"
-                            alt="Picture of the author"
-                            width={500}
-                            height={500}
-                            className={classes.image1}
-                        />
+        <Grid gutter={0}>
+            <Grid.Col md={8}>
+                <div className={styles.imageContainer}
+                    style={{ backgroundColor: 'purple' }}>
+                    <div className={classes.productName}>
+                        <Stack>
+                            <Text className={classes.productNameSpan} fz="xl">Bomber Jacket <br></br> 99.99 USB</Text>
+                        </Stack>
                     </div>
-
-                </Grid.Col>
-                <Grid.Col xs={4}>
-                    <Stack>
+                    <Image
+                        src="/black_hat_1.png"
+                        alt="Picture of the author"
+                        fill
+                        className={styles.image}
+                    />
+                </div>
+            </Grid.Col>
+            <Grid.Col md={4}>
+                <div>
+                    <div className={styles.imageContainer}
+                        style={{ backgroundColor: 'white' }}>
                         <Image
                             src="/bomber_jacket_1.png"
                             alt="Picture of the author"
-                            width={500}
-                            height={500}
-                            className={classes.image2}
-
+                            fill
+                            className={styles.image}
                         />
+                    </div>
+                    <div className={styles.imageContainer}
+                        style={{ backgroundColor: 'pink' }}>
                         <Image
                             src="/champion_jacket_1.png"
                             alt="Picture of the author"
-                            width={500}
-                            height={500}
-                            className={classes.image3}
+                            fill
+                            className={styles.image}
                         />
-                    </Stack>
-                </Grid.Col>
+                    </div>
+                </div>
+            </Grid.Col>
 
-            </Grid>
-        </Container>
+        </Grid>
     );
 }
 
@@ -63,11 +69,27 @@ const useStyles = createStyles((theme) => ({
         backgroundColor: "pink"
     },
     productCard: {
-        // display: "flex",
-        // alignItems: "center",
-        // justifyContent: "center"
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
     },
     gridColumn: {
 
     },
+    stackProducts: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    productName: {
+        position: "absolute",
+        display: "flex",
+        justifyContent: 'start',
+    },
+    productNameSpan: {
+        position: "absolute",
+        backgroundColor: 'black',
+        padding: '1rem',
+    }
 }));
