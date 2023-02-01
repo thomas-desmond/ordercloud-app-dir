@@ -3,6 +3,7 @@ import { Container, Grid, Stack, Text, createStyles } from '@mantine/core';
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './ProductCard.module.css'
+import Marquee from "react-fast-marquee";
 
 
 
@@ -12,47 +13,86 @@ export default function ProductCard({ products }: any) {
 
     console.log("Product", products);
     return (
-        <Grid gutter={0}>
-            <Grid.Col md={8}>
-                <div className={styles.imageContainer}
-                    style={{ backgroundColor: 'purple' }}>
-                    <div className={classes.productName}>
-                        <Stack>
-                            <Text className={classes.productNameSpan} fz="xl">Bomber Jacket <br></br> 99.99 USB</Text>
-                        </Stack>
-                    </div>
-                    <Image
-                        src="/black_hat_1.png"
-                        alt="Picture of the author"
-                        fill
-                        className={styles.image}
-                    />
-                </div>
-            </Grid.Col>
-            <Grid.Col md={4}>
-                <div>
+        <>
+            <Grid gutter={0}>
+                <Grid.Col md={8}>
                     <div className={styles.imageContainer}
-                        style={{ backgroundColor: 'white' }}>
+                        style={{ backgroundColor: 'purple' }}>
+                        <div className={classes.productName}>
+                            <Stack>
+                                <Text className={classes.productNameSpan} fz="xl">Bomber Jacket <br></br> 99.99 USB</Text>
+                            </Stack>
+                        </div>
                         <Image
-                            src="/bomber_jacket_1.png"
+                            src="/black_hat_1.png"
                             alt="Picture of the author"
                             fill
                             className={styles.image}
                         />
                     </div>
-                    <div className={styles.imageContainer}
-                        style={{ backgroundColor: 'pink' }}>
-                        <Image
-                            src="/champion_jacket_1.png"
-                            alt="Picture of the author"
-                            fill
-                            className={styles.image}
-                        />
+                </Grid.Col>
+                <Grid.Col md={4}>
+                    <div>
+                        <div className={styles.imageContainer}
+                            style={{ backgroundColor: 'white' }}>
+                            <Image
+                                src="/bomber_jacket_1.png"
+                                alt="Picture of the author"
+                                fill
+                                className={styles.image}
+                            />
+                        </div>
+                        <div className={styles.imageContainer}
+                            style={{ backgroundColor: 'pink' }}>
+                            <Image
+                                src="/champion_jacket_1.png"
+                                alt="Picture of the author"
+                                fill
+                                className={styles.image}
+                            />
+                        </div>
                     </div>
-                </div>
-            </Grid.Col>
-
-        </Grid>
+                </Grid.Col>
+            </Grid>
+            <Marquee gradient={false}>
+                <Image
+                    src="/black_hat_1.png"
+                    alt="Picture of the author"
+                    width={350}
+                    height={350}
+                />
+                <Image
+                    src="/bomber_jacket_1.png"
+                    alt="Picture of the author"
+                    width={350}
+                    height={350}
+                />
+                <Image
+                    src="/champion_jacket_1.png"
+                    alt="Picture of the author"
+                    width={350}
+                    height={350}
+                />
+                                <Image
+                    src="/black_hat_1.png"
+                    alt="Picture of the author"
+                    width={350}
+                    height={350}
+                />
+                <Image
+                    src="/bomber_jacket_1.png"
+                    alt="Picture of the author"
+                    width={350}
+                    height={350}
+                />
+                <Image
+                    src="/champion_jacket_1.png"
+                    alt="Picture of the author"
+                    width={350}
+                    height={350}
+                />
+            </Marquee>
+        </>
     );
 }
 
