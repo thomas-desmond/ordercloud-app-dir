@@ -1,14 +1,13 @@
 'use client'
-import { Container, Grid, Stack, Text, createStyles } from '@mantine/core';
-import Link from 'next/link'
+import { Grid, Stack, Text, createStyles } from '@mantine/core';
 import Image from 'next/image'
-import styles from './ProductCard.module.css'
+import styles from './ProductGrid.module.css'
 import Marquee from "react-fast-marquee";
 
 
 
 
-export default function ProductCard({ products }: any) {
+export default function ProductGrid({ products }: any) {
     const { classes } = useStyles();
 
     console.log("Product", products);
@@ -73,7 +72,7 @@ export default function ProductCard({ products }: any) {
                     width={350}
                     height={350}
                 />
-                                <Image
+                <Image
                     src="/black_hat_1.png"
                     alt="Picture of the author"
                     width={350}
