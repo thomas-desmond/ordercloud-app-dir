@@ -1,6 +1,4 @@
-import styles from './page.module.css'
 import ProductCard from '@/components/ProductCard';
-import HandleAuth from '@/components/auth/HandleAuth';
 
 async function getToken() {
   const buyerClientId = process.env.ORDERCLOUD_BUYER_CLIENT_ID as string;
