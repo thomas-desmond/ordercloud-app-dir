@@ -1,10 +1,11 @@
 import Login from '@/components/auth/login';
 import Marquee from '@/components/marquee/Marquee';
 import ProductGrid from '@/components/product/ProductGrid';
+import { ProductList } from '@/interface/Product';
 import { getToken } from '@/lib/GetToken';
 
 
-async function getProducts(token: string) {
+async function getProducts(token: string): Promise<ProductList> {
   const headerOptions = {
     Authorization: `Bearer ${token}`,
     ContentType: 'application/json'
@@ -21,12 +22,12 @@ async function getProducts(token: string) {
 
 export default async function Home() {
   const token = await getToken();
-  const productData = await getProducts(token);
+  const productData: ProductList = await getProducts(token);
 
   return (
     <>
       <Login />
-      <ProductGrid products={productData} />
+      <ProductGrid products={productData.Items} />
       <Marquee products={productData}/>
     </>
   )
