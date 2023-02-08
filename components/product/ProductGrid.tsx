@@ -25,29 +25,5 @@ export default function ProductGrid({ products }: any) {
 
 
 const useStyles = createStyles((theme) => ({
-    image1: {
-        backgroundColor: "purple",
-    },
-
-    image2: {
-        backgroundColor: "white"
-    },
-    image3: {
-        backgroundColor: "pink"
-    },
-    productCard: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-    },
-    grid: {
-        maxHeight: '500px'
-    },
-    stackProducts: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-    },
 
 }));

@@ -1,3 +1,4 @@
+import Login from '@/components/auth/login';
 import Marquee from '@/components/marquee/Marquee';
 import ProductGrid from '@/components/product/ProductGrid';
 import { getToken } from '@/lib/GetToken';
@@ -24,6 +25,7 @@ export default async function Home() {
 
   return (
     <>
+      <Login />
       <ProductGrid products={productData} />
       <Marquee products={productData}/>
     </>
