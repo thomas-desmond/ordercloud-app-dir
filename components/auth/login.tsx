@@ -10,7 +10,6 @@ export default function Login() {
         const data = await fetch("/api/buyerAToken");
         const token =  await data.json();
         setCookie('token', token.result)
-        Router.reload();
     }
     
     async function loginBuyerB() {
