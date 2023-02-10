@@ -6,22 +6,23 @@ import ProductNameAndPrice from './ProductNameAndPrice';
 
 type ProductCardProps = {
     product: Product,
-    color: string
+    color: string,
+    size: string
+    children: any
 }
 
-export default function ProductCard({ product, color }: ProductCardProps) {
+export default function ProductCard({ product, color, size, children }: ProductCardProps) {
     if (!color) { color = 'white' }
-    console.log(product);
 
     return (
         <div className={styles.imageContainer}
             style={{ backgroundColor: color }}>
-            <ProductNameAndPrice product={product} />
+            {children}
             <Image
                 src={product.xp.Images[0].url}
                 alt="Picture of the author"
                 fill
-                className={styles.image}
+                className={`${size == 'small' ? styles.imageSmall : styles.image}`}
             />
         </div>
     );

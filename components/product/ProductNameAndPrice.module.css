@@ -1,0 +1,11 @@
+.productName {
+    position: absolute;
+    display: flex;
+    justify-content: start;
+}
+
+.productNameText {
+    position: absolute;
+    background-color: black;
+    padding: 1rem;
+}        

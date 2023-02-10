@@ -3,7 +3,9 @@ export interface PriceBreaks {
 }
 
 export interface PriceSchedule {
-    PriceBreaks: PriceBreaks
+    PriceBreaks: PriceBreaks[];
+    ID: string;
+    Name: string;
 }
 
 export interface ImageArray {

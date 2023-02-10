@@ -13,6 +13,17 @@
     height: unset !important;
     overflow: hidden;
     transition: all 0.3s;
+    max-height: 750px;
+}
+
+.imageSmall {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+    overflow: hidden;
+    transition: all 0.3s;
+    max-height: 375px;
 }
 
 .image:hover {
