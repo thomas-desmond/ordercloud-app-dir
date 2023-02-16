@@ -2,7 +2,6 @@
 import { Product } from '@/interface/Product';
 import Image from 'next/image'
 import styles from './ProductCard.module.css'
-import ProductNameAndPrice from './ProductNameAndPrice';
 
 type ProductCardProps = {
     product: Product,
