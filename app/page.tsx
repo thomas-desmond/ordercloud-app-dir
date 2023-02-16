@@ -35,9 +35,11 @@ async function getProductPrices(buyerToken: any): Promise<any> {
 export default async function Home() {
   const cookieStore = cookies();
 
-  const token = await getToken();
-  const productData: ProductList = await getProductImages(token);
-  const productPrices: ProductList = await getProductPrices(cookieStore.get('buyerToken'));
+  const anonymousToken = await getToken();
+  const productData: ProductList = await getProductImages(anonymousToken);
+  
+  const buyerToken = cookieStore.get('buyerToken');
+  const productPrices: ProductList = await getProductPrices(buyerToken);
 
   const props = {
     products: productData.Items,
