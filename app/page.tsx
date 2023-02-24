@@ -13,7 +13,7 @@ async function getProductImages(anonymousToken: string): Promise<ProductList> {
     { cache: 'force-cache', method: 'GET', headers: headerOptions });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch product images');
   }
 
   return await response.json();
@@ -26,7 +26,7 @@ async function getProductPrices(buyerToken: any): Promise<any> {
     { cache: 'no-store', method: 'GET', headers: headerOptions });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch product prices');
   }
   return await response.json();
 }
