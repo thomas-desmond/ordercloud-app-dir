@@ -13,20 +13,22 @@ async function getProductImages(anonymousToken: string): Promise<ProductList> {
     { cache: 'force-cache', method: 'GET', headers: headerOptions });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch product images');
+    console.log("Unable to fetch prices, likely invalid token");
   }
 
   return await response.json();
 }
 
 async function getProductPrices(buyerToken: any): Promise<any> {
+
   const headerOptions = buildHeader(buyerToken)
 
   const response = await fetch(`https://sandboxapi.ordercloud.io/v1/me/products`,
     { cache: 'no-store', method: 'GET', headers: headerOptions });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch product prices');
+    console.log("Unable to fetch prices, likely invalid token");
+    return;
   }
   return await response.json();
 }
@@ -37,13 +39,13 @@ export default async function Home() {
 
   const anonymousToken = await getToken();
   const productData: ProductList = await getProductImages(anonymousToken);
-  
+
   const buyerToken = cookieStore.get('buyerToken');
-  const productPrices: ProductList = await getProductPrices(buyerToken);
+  const productPrices: ProductList = await getProductPrices(buyerToken?.value);
 
   const props = {
-    products: productData.Items,
-    priceSchedule: productPrices.Items
+    products: productData?.Items,
+    priceSchedule: productPrices?.Items
   }
 
   return (
