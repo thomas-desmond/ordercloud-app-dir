@@ -20,7 +20,6 @@ async function getProductImages(anonymousToken: string): Promise<ProductList> {
 }
 
 async function getProductPrices(buyerToken: any): Promise<any> {
-
   const headerOptions = buildHeader(buyerToken)
 
   const response = await fetch(`https://sandboxapi.ordercloud.io/v1/me/products`,
