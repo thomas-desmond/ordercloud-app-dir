@@ -26,7 +26,11 @@
     max-height: 375px;
 }
 
-.image:hover {
-    /* transform: scale(1.1) rotate(5deg); */
 
+.imageSmall:hover {
+    transform: scale(1.1);
+}
+
+.image:hover {
+    transform: scale(1.1);
 }
