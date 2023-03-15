@@ -3,8 +3,6 @@ import Marquee from '@/components/marquee/Marquee';
 import ProductGrid from '@/components/product/ProductGrid';
 import { ProductList } from '@/interface/Product';
 import { getToken } from '@/lib/GetToken';
-import { cookies } from 'next/headers';
-
 
 async function getProductImages(anonymousToken: string): Promise<ProductList> {
   const headerOptions = buildHeader(anonymousToken)
@@ -19,37 +17,18 @@ async function getProductImages(anonymousToken: string): Promise<ProductList> {
   return await response.json();
 }
 
-async function getProductPrices(buyerToken: any): Promise<any> {
-  const headerOptions = buildHeader(buyerToken)
-
-  const response = await fetch(`https://sandboxapi.ordercloud.io/v1/me/products`,
-    { cache: 'no-store', method: 'GET', headers: headerOptions });
-
-  if (!response.ok) {
-    console.log("Unable to fetch prices, likely invalid token");
-    return;
-  }
-  return await response.json();
-}
-
-
 export default async function Home() {
-  const cookieStore = cookies();
-
   const anonymousToken = await getToken();
   const productData: ProductList = await getProductImages(anonymousToken);
 
-  const buyerToken = cookieStore.get('buyerToken');
-  const productPrices: ProductList = await getProductPrices(buyerToken?.value);
-
   const props = {
     products: productData?.Items,
-    priceSchedule: productPrices?.Items
   }
 
   return (
     <>
       <Login />
+      {/* @ts-expect-error Async Server Component */}
       <ProductGrid {...props} />
       <Marquee products={productData} />
     </>
