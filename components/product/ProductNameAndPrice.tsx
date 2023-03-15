@@ -7,7 +7,6 @@ type PriceScheduleProps = {
 
 
 export default function ProductNameAndPrice({ product }: PriceScheduleProps) {
-
     let productPrice = 0;
     if (product.PriceSchedule?.PriceBreaks[0]?.Price) {
         productPrice = product.PriceSchedule.PriceBreaks[0]?.Price;

@@ -5,7 +5,10 @@ import { ProductList } from '@/interface/Product';
 import { getToken } from '@/lib/GetToken';
 
 async function getProductImages(anonymousToken: string): Promise<ProductList> {
-  const headerOptions = buildHeader(anonymousToken)
+  const headerOptions = {
+    Authorization: `Bearer ${anonymousToken}`,
+    ContentType: 'application/json',
+  }
 
   const response = await fetch(`https://sandboxapi.ordercloud.io/v1/me/products`,
     { cache: 'force-cache', method: 'GET', headers: headerOptions });
@@ -33,12 +36,4 @@ export default async function Home() {
       <Marquee products={productData} />
     </>
   )
-}
-
-
-function buildHeader(token: string) {
-  return {
-    Authorization: `Bearer ${token}`,
-    ContentType: 'application/json',
-  }
 }
