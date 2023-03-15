@@ -10,7 +10,7 @@ type ProductProps = {
 
 export default function ProductGrid({ products, priceSchedule }: ProductProps) {
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.gridWrapper}>
             <div>
                 <ProductCard product={products[0]} size="big" color="purple">
                     {priceSchedule &&
