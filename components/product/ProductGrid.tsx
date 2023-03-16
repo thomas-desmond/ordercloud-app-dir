@@ -22,7 +22,6 @@ async function getProductPrices(buyerToken: any): Promise<any> {
     try {
         Tokens.SetAccessToken(buyerToken as string);
         products = await Me.ListProducts();
-        console.log("Products ", products)
     }
     catch (e) {
         console.log(e)
