@@ -3,6 +3,10 @@ import ProductCard from './ProductCard';
 import ProductNameAndPrice from './ProductNameAndPrice';
 import styles from './ProductGrid.module.css'
 import { cookies } from 'next/headers';
+import { Tokens, Me } from 'ordercloud-javascript-sdk';
+import { Configuration } from 'ordercloud-javascript-sdk';
+
+export const revalidate = 0;
 
 type ProductProps = {
     products: Product[]
@@ -10,19 +14,21 @@ type ProductProps = {
 }
 
 async function getProductPrices(buyerToken: any): Promise<any> {
-    const headerOptions = {
-        Authorization: `Bearer ${buyerToken}`,
-        ContentType: 'application/json',
+    Configuration.Set({
+        baseApiUrl: 'https://sandboxapi.ordercloud.io',
+    })
+
+    let products = null;
+    try {
+        Tokens.SetAccessToken(buyerToken as string);
+        products = await Me.ListProducts();
+        console.log("Products ", products)
+    }
+    catch (e) {
+        console.log(e)
     }
 
-    const response = await fetch(`https://sandboxapi.ordercloud.io/v1/me/products`,
-        { cache: 'no-store', method: 'GET', headers: headerOptions });
-
-    if (!response.ok) {
-        console.log("Unable to fetch prices, likely invalid token");
-        return;
-    }
-    return await response.json();
+    return products;
 }
 
 export default async function ProductGrid({ products }: ProductProps) {
@@ -35,16 +41,22 @@ export default async function ProductGrid({ products }: ProductProps) {
         <div className={styles.gridWrapper}>
             <div>
                 <ProductCard product={products[0]} size="big" color="purple">
-                    <ProductNameAndPrice product={productsWithPrices.Items[0]} />
+                    {productsWithPrices &&
+                        <ProductNameAndPrice product={productsWithPrices.Items[0]} />
+                    }
                 </ProductCard>
             </div>
             <div>
                 <ProductCard product={products[1]} size="small" color='white'>
-                    <ProductNameAndPrice product={productsWithPrices.Items[1]} />
+                    {productsWithPrices &&
+                        <ProductNameAndPrice product={productsWithPrices.Items[1]} />
+                    }
                 </ProductCard>
 
                 <ProductCard product={products[2]} size="small" color='pink'>
-                    <ProductNameAndPrice product={productsWithPrices.Items[2]} />
+                    {productsWithPrices &&
+                        <ProductNameAndPrice product={productsWithPrices.Items[2]} />
+                    }
                 </ProductCard>
             </div>
         </div>
